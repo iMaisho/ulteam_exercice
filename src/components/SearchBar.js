@@ -1,18 +1,22 @@
-import { View, TextInput, StyleSheet } from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+} from "react-native";
 import { useContext } from "react";
 import { SearchTextContext } from "../contexts/SeachTextContext";
 
 function SearchBar() {
   const { searchText, setSearchText } = useContext(SearchTextContext);
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        value={searchText}
-        placeholder="Rechercher"
-        onChangeText={setSearchText}
-      />
-    </View>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          value={searchText}
+          placeholder="Rechercher"
+          onChangeText={setSearchText}
+        />
+      </View>
   );
 }
 

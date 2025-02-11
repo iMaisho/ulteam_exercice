@@ -4,6 +4,8 @@ import {
   StyleSheet,
   FlatList,
   ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { useContext, useEffect } from "react";
 import Item from "../components/Item";
@@ -54,24 +56,33 @@ function HomeScreen() {
   }, [searchText]);
 
   return (
-    <View>
-      <SearchBar />
-      {loading ? (
-        <ActivityIndicator size="large" color="#00ff00" />
-      ) : items ? (
-        <FlatList
-          data={searchText !== "" ? filteredItems : items}
-          renderItem={({ item }) => (
-            <View style={styles.container}>
-              <Item item={item} />
-            </View>
-          )}
-          keyExtractor={(item) => item.id.toString()}
-        />
-      ) : (
-        <Text>Erreur de chargement des données</Text>
-      )}
-    </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 110}
+      style={styles.container}
+    >
+      <View style={styles.inner}>
+        {loading ? (
+          <ActivityIndicator size="large" color="#00ff00" />
+        ) : items ? (
+          <FlatList
+            style={styles.contentContainer}
+            data={searchText !== "" ? filteredItems : items}
+            renderItem={({ item }) => (
+              <View>
+                <Item item={item} />
+              </View>
+            )}
+            keyExtractor={(item) => item.id.toString()}
+          />
+        ) : (
+          <Text>Erreur de chargement des données</Text>
+        )}
+        <View style={styles.searchBarContainer}>
+          <SearchBar />
+        </View>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -79,9 +90,21 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
-    padding: 50,
-    borderColor: "000",
-    borderWidth: 1,
+    flex: 1,
+  },
+
+  inner: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+
+  contentContainer: {
+    paddingBottom: -200,
+  },
+
+  searchBarContainer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
   },
 });
