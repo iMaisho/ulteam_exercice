@@ -15,6 +15,8 @@ import { SearchTextContext } from "../contexts/SeachTextContext";
 import { FilteredItemsContext } from "../contexts/FilteredItemsContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { LoadingContext } from "../contexts/LoadingContext";
+import { ThemeContext } from "../contexts/ThemeContext";
+import ToggleTheme from "../components/TEMP_ToggleTheme";
 
 function HomeScreen() {
   const { items, setItems } = useContext(ItemsContext);
@@ -22,6 +24,7 @@ function HomeScreen() {
   const { filteredItems, setFilteredItems } = useContext(FilteredItemsContext);
   const { error, setError } = useContext(ErrorContext);
   const { loading, setLoading } = useContext(LoadingContext);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     setLoading(true);
@@ -55,6 +58,28 @@ function HomeScreen() {
     }
   }, [searchText]);
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.white,
+    },
+
+    inner: {
+      flex: 1,
+      justifyContent: "flex-end",
+    },
+
+    contentContainer: {
+      paddingBottom: -200,
+    },
+
+    searchBarContainer: {
+      position: "absolute",
+      bottom: 0,
+      width: "100%",
+    },
+  });
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -79,6 +104,7 @@ function HomeScreen() {
           <Text>Erreur de chargement des données</Text>
         )}
         <View style={styles.searchBarContainer}>
+          <ToggleTheme />
           <SearchBar />
         </View>
       </View>
@@ -87,24 +113,3 @@ function HomeScreen() {
 }
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-
-  inner: {
-    flex: 1,
-    justifyContent: "flex-end",
-  },
-
-  contentContainer: {
-    paddingBottom: -200,
-  },
-
-  searchBarContainer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-  },
-});

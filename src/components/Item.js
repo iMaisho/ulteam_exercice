@@ -2,7 +2,6 @@ import { View, Text, StyleSheet } from "react-native";
 import AddToFavorites from "./AddToFavorites";
 
 function Item({ item }) {
-  console.log("Item reçu dans Item : ", item);
   return (
     <View>
       <AddToFavorites item={item} />
