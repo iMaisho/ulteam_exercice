@@ -4,14 +4,29 @@ import { TouchableOpacity, StyleSheet } from "react-native";
 import themeDark from "../themes/themeDark";
 import themeLight from "../themes/themeLight";
 import Ionicons from "react-native-vector-icons/Ionicons";
+// import Animated, {
+//   useSharedValue,
+//   useAnimatedStyle,
+//   withSpring,
+// } from "react-native-reanimated";
 
 function ToggleTheme() {
   const { theme, setTheme } = useContext(ThemeContext);
+
+  // const rotation = useSharedValue(180);
+
+  // const animatedStyle = useAnimatedStyle(() => ({
+  //   transform: [{ rotate: `${rotation.value}deg` }],
+  // }));
+
   const toggleTheme = () => {
+    // rotation.value = withSpring(rotation.value + 90);
+    // console.log(rotation.value);
     setTheme((prevTheme) =>
       prevTheme === themeLight ? themeDark : themeLight
     );
   };
+
   const styles = StyleSheet.create({
     button: {
       backgroundColor: theme.background,
@@ -27,13 +42,15 @@ function ToggleTheme() {
   });
 
   return (
-    <TouchableOpacity style={styles.button} onPress={toggleTheme}>
-      <Ionicons
-        name={theme === themeLight ? "moon" : "sunny"}
-        size={24}
-        color={theme.primary}
-      />
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity style={styles.button} onPress={toggleTheme}>
+        <Ionicons
+          name={theme === themeLight ? "moon" : "sunny"}
+          size={24}
+          color={theme.primary}
+        />
+      </TouchableOpacity>
+    </>
   );
 }
 
