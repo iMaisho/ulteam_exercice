@@ -51,8 +51,10 @@ function HomeScreen() {
   useEffect(() => {
     if (items) {
       setFilteredItems(
-        items.filter((item) =>
-          item.title.toLowerCase().includes(searchText.toLowerCase())
+        items.filter(
+          (item) =>
+            item.title.toLowerCase().includes(searchText.toLowerCase()) ||
+            item.body.toLowerCase().includes(searchText.toLowerCase())
         )
       );
     }
