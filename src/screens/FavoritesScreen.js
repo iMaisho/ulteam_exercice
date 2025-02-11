@@ -10,7 +10,7 @@ function FavoritesScreen() {
       <FlatList
         data={favorites}
         renderItem={({ item }) => (
-          <View style={styles.container}>
+          <View>
             <Item item={item} />
           </View>
         )}

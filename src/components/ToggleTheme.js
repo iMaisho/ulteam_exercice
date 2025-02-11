@@ -14,15 +14,15 @@ function ToggleTheme() {
   };
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: theme.white,
-      padding: 10,
+      backgroundColor: theme.background,
       alignItems: "center",
       justifyContent: "center",
-      width: 50,
-      height: 50,
       borderWidth: 1,
-      borderColor: "000",
-      borderRadius: 50,
+      borderColor: theme.secondary,
+      borderRadius: 100,
+      height: 40,
+      width: 40,
+      margin: 10,
     },
   });
 
@@ -31,7 +31,7 @@ function ToggleTheme() {
       <Ionicons
         name={theme === themeLight ? "moon" : "sunny"}
         size={24}
-        color={theme.black}
+        color={theme.primary}
       />
     </TouchableOpacity>
   );

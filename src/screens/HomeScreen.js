@@ -16,7 +16,7 @@ import { FilteredItemsContext } from "../contexts/FilteredItemsContext";
 import { ErrorContext } from "../contexts/ErrorContext";
 import { LoadingContext } from "../contexts/LoadingContext";
 import { ThemeContext } from "../contexts/ThemeContext";
-import ToggleTheme from "../components/TEMP_ToggleTheme";
+import ToggleTheme from "../components/ToggleTheme";
 
 function HomeScreen() {
   const { items, setItems } = useContext(ItemsContext);
@@ -61,12 +61,17 @@ function HomeScreen() {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.white,
+      backgroundColor: theme.background,
     },
 
-    inner: {
+    itemContainer: {
       flex: 1,
       justifyContent: "flex-end",
+      backgroundColor: theme.itemBackground,
+      margin: 10,
+      borderRadius: 30,
+      borderColor: theme.secondary,
+      borderWidth: 1,
     },
 
     contentContainer: {
@@ -74,9 +79,12 @@ function HomeScreen() {
     },
 
     searchBarContainer: {
+      backgroundColor: theme.background,
       position: "absolute",
       bottom: 0,
+      flexDirection: "row",
       width: "100%",
+      alignItems: "center",
     },
   });
 
@@ -86,7 +94,7 @@ function HomeScreen() {
       keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 110}
       style={styles.container}
     >
-      <View style={styles.inner}>
+      <View style={styles.container}>
         {loading ? (
           <ActivityIndicator size="large" color="#00ff00" />
         ) : items ? (
@@ -94,7 +102,7 @@ function HomeScreen() {
             style={styles.contentContainer}
             data={searchText !== "" ? filteredItems : items}
             renderItem={({ item }) => (
-              <View>
+              <View style={styles.itemContainer}>
                 <Item item={item} />
               </View>
             )}
@@ -104,8 +112,8 @@ function HomeScreen() {
           <Text>Erreur de chargement des données</Text>
         )}
         <View style={styles.searchBarContainer}>
-          <ToggleTheme />
           <SearchBar />
+          <ToggleTheme />
         </View>
       </View>
     </KeyboardAvoidingView>

@@ -1,8 +1,10 @@
 const themeDark = {
-  primary: "#5b74fe",
-  secondary: "#cad0f4",
-  black: "#f5f5f5",
-  white: "#333232",
+  primary: "#485499",
+  secondary: "#403e57",
+  background: "#151723",
+  itemBackground: "#403e57",
+  text: "#a8adcc",
+  complementary: "#fee55b",
 };
 
 export default themeDark;

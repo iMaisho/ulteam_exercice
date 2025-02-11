@@ -16,24 +16,15 @@ function AddToFavorites({ item }) {
   };
 
   const styles = StyleSheet.create({
-    container: {
-      backgroundColor: "#green",
-      color: "green",
-    },
-
     button: {
       flexDirection: "row",
       justifyContent: "center",
-      backgroundColor: theme.white,
+      backgroundColor: theme.primary,
       padding: 10,
       alignItems: "center",
       height: 50,
-      borderWidth: 1,
-      borderColor: "000",
-    },
-
-    text: {
-      paddingLeft: 10,
+      width: 50,
+      borderRadius: 50,
     },
   });
 
@@ -44,13 +35,12 @@ function AddToFavorites({ item }) {
           favorites.some((fav) => fav.id === item.id) ? "star" : "star-outline"
         }
         size={24}
-        color={theme.primary}
+        color={
+          favorites.some((fav) => fav.id === item.id)
+            ? theme.complementary
+            : theme.secondary
+        }
       />
-      <Text style={styles.text}>
-        {favorites.some((fav) => fav.id === item.id)
-          ? "Retirer des favoris"
-          : "Ajouter aux favoris"}
-      </Text>
     </TouchableOpacity>
   );
 }
