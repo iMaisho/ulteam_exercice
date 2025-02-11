@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import MyTabs from "./src/screens/MyTabs";
 import { Providers } from "./src/contexts/Providers";
 
-export default function App() {
+function App() {
   return (
     <>
       <Providers>
@@ -20,8 +20,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
 });
+
+export default App;
