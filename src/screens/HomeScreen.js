@@ -55,7 +55,7 @@ function HomeScreen() {
 
   return (
     <View>
-      <SearchBar searchText={searchText} setSearchText={setSearchText} />
+      <SearchBar />
       {loading ? (
         <ActivityIndicator size="large" color="#00ff00" />
       ) : items ? (

@@ -1,6 +1,9 @@
 import { View, TextInput, StyleSheet } from "react-native";
+import { useContext } from "react";
+import { SearchTextContext } from "../contexts/SeachTextContext";
 
-function SearchBar({ searchText, setSearchText }) {
+function SearchBar() {
+  const { searchText, setSearchText } = useContext(SearchTextContext);
   return (
     <View style={styles.container}>
       <TextInput
