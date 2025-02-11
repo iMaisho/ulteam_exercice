@@ -5,19 +5,32 @@ import SearchBar from "../components/SearchBar";
 import { ItemsContext } from "../contexts/ItemsContext";
 import { SearchTextContext } from "../contexts/SeachTextContext";
 import { FilteredItemsContext } from "../contexts/FilteredItemsContext";
+import { ErrorContext } from "../contexts/ErrorContext";
 
 function HomeScreen() {
   const { items, setItems } = useContext(ItemsContext);
   const { searchText, setSearchText } = useContext(SearchTextContext);
   const { filteredItems, setFilteredItems } = useContext(FilteredItemsContext);
+  const { error, setError } = useContext(ErrorContext);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         setItems(data);
+        setError(null);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError(
+          "Impossible de charger les articles. Vérifiez votre connexion."
+        );
+      });
   }, []);
 
   useEffect(() => {
