@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
 import { useContext, useEffect } from "react";
 import Item from "../components/Item";
 import SearchBar from "../components/SearchBar";

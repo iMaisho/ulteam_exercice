@@ -4,7 +4,6 @@ import { useContext } from "react";
 
 function AddToFavorites({ item }) {
   const { favorites, setFavorites } = useContext(FavoritesContext);
-  console.log("Item reçu dans AddToFavorites.js :", item);
   const toggleFavorite = () => {
     if (favorites.some((fav) => fav.id === item.id)) {
       setFavorites(favorites.filter((fav) => fav.id !== item.id));
