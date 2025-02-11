@@ -12,14 +12,17 @@ import { ItemsContext } from "../contexts/ItemsContext";
 import { SearchTextContext } from "../contexts/SeachTextContext";
 import { FilteredItemsContext } from "../contexts/FilteredItemsContext";
 import { ErrorContext } from "../contexts/ErrorContext";
+import { LoadingContext } from "../contexts/LoadingContext";
 
 function HomeScreen() {
   const { items, setItems } = useContext(ItemsContext);
   const { searchText, setSearchText } = useContext(SearchTextContext);
   const { filteredItems, setFilteredItems } = useContext(FilteredItemsContext);
   const { error, setError } = useContext(ErrorContext);
+  const { loading, setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
+    setLoading(true);
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => {
         if (!response.ok) {
@@ -36,7 +39,8 @@ function HomeScreen() {
         setError(
           "Impossible de charger les articles. Vérifiez votre connexion."
         );
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -52,7 +56,9 @@ function HomeScreen() {
   return (
     <View>
       <SearchBar searchText={searchText} setSearchText={setSearchText} />
-      {items ? (
+      {loading ? (
+        <ActivityIndicator size="large" color="#00ff00" />
+      ) : items ? (
         <FlatList
           data={searchText !== "" ? filteredItems : items}
           renderItem={({ item }) => (
