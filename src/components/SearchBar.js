@@ -31,6 +31,7 @@ function SearchBar() {
         value={searchText}
         placeholder="Rechercher"
         onChangeText={setSearchText}
+        placeholderTextColor={theme.primary}
       />
     </View>
   );

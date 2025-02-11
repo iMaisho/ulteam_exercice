@@ -4,7 +4,7 @@ const themeDark = {
   background: "#151723",
   itemBackground: "#403e57",
   text: "#a8adcc",
-  complementary: "#fee55b",
+  complementary: "#998d48",
 };
 
 export default themeDark;

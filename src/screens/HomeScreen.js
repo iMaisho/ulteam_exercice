@@ -74,11 +74,9 @@ function HomeScreen() {
       borderWidth: 1,
     },
 
-    contentContainer: {
-      paddingBottom: -200,
-    },
-
     searchBarContainer: {
+      borderTopColor: theme.secondary,
+      borderTopWidth: 1,
       backgroundColor: theme.background,
       position: "absolute",
       bottom: 0,
@@ -99,7 +97,6 @@ function HomeScreen() {
           <ActivityIndicator size="large" color="#00ff00" />
         ) : items ? (
           <FlatList
-            style={styles.contentContainer}
             data={searchText !== "" ? filteredItems : items}
             renderItem={({ item }) => (
               <View style={styles.itemContainer}>
