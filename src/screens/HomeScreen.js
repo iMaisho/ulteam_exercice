@@ -96,7 +96,7 @@ function HomeScreen() {
     >
       <View style={styles.container}>
         {loading ? (
-          <ActivityIndicator size="large" color="#00ff00" />
+          <ActivityIndicator size="large" color="#5b74fe" />
         ) : items ? (
           <FlatList
             data={searchText !== "" ? filteredItems : items}

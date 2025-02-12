@@ -12,6 +12,7 @@ function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
+        animation: "shift",
         headerStyle: {
           backgroundColor: theme.background,
           borderBottomColor: theme.secondary,
