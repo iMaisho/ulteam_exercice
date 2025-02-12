@@ -59,7 +59,7 @@ function Item({ item }) {
 
     highlight: {
       backgroundColor: theme.primary,
-      color: theme.complementary,
+      color: theme.background,
     },
   });
 
